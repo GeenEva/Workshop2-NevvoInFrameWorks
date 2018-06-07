@@ -9,7 +9,7 @@ public class Account {
 	
 	public enum AccountType {ADMIN , EMPLOYEE , CUSTOMER }
 	
-	private String accountId;
+	private long accountId;
 	private String email;
 	private String password;
 	private AccountType accountType;
@@ -27,11 +27,11 @@ public class Account {
 	@Id
 	@Column(name = "account_id",nullable = false, length = 30)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public String getAccountId() {
+	public long getAccountId() {
 		return accountId;
 	}
 	
-	public void setAccountId(String accountId) {
+	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 	}
 	
@@ -70,7 +70,7 @@ public class Account {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((accountId == null) ? 0 : accountId.hashCode());
+		result = prime * result + (int) (accountId ^ (accountId >>> 32));
 		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
@@ -86,13 +86,13 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		if (accountId == null) {
-			if (other.accountId != null)
-				return false;
-		} else if (!accountId.equals(other.accountId))
+		
+		if (accountId != other.accountId)
 			return false;
 		if (accountType != other.accountType)
 			return false;
+			
+			
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -105,6 +105,8 @@ public class Account {
 			return false;
 		return true;
 	}
+
+	
 	
 	
 
