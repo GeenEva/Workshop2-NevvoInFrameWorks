@@ -14,15 +14,18 @@ public class Account {
 	private String password;
 	private AccountType accountType;
 	
+	
 	public Account(){
 		
 	}
+	
 	
 	public Account(String email, String password, AccountType accountType){
 		this.email = email;
 		this.password = password;
 		this.accountType = accountType;
 	}
+	
 	
 	@Id
 	@Column(name = "account_id",nullable = false, length = 30)
@@ -31,22 +34,29 @@ public class Account {
 		return accountId;
 	}
 	
+	
 	public void setAccountId(long accountId) {
 		this.accountId = accountId;
 	}
+	
 	
 	@Column(nullable = false, length = 60)
 	public String getEmail() {
 		return email;
 	}
+	
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
 	
 	@Column(nullable = false, length = 60)
 	public String getPassword() {
 		return password;
 	}
+	
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -56,10 +66,13 @@ public class Account {
 	public AccountType getAccountType() {
 		return accountType;
 	}
+	
+	
 	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Account [accountId=" + accountId + ", email=" + email + ", password=" + password + ", accountType="
@@ -107,7 +120,4 @@ public class Account {
 	}
 
 	
-	
-	
-
 }
