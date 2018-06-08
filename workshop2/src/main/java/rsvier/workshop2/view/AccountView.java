@@ -23,7 +23,7 @@ public class AccountView extends View{
 	}
 	
 	public void printRequestTypeOfAccount() {
-		System.out.println("Geef type account:\n1 = Admin\n2 = Employee\n3 = Customer\n");
+		System.out.println("\nGeef type account:\n1 = Admin\n2 = Employee\n3 = Customer\n");
 	}
 
 	public void printLoginDetailsWrong() {

@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Account {
 	
 	
-	public enum AccountType {ADMIN , EMPLOYEE , CUSTOMER }
+	public enum AccountType {ADMIN, EMPLOYEE, CUSTOMER }
 	
 	private long accountId;
 	private String email;

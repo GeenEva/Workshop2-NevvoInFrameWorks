@@ -17,9 +17,8 @@ public class AccountController extends Controller{
 	
 	@Override
 	public void runView() {
-		
 		accountView.printHeaderMessage();
-
+		
 	}
 	
 	
@@ -37,18 +36,28 @@ public class AccountController extends Controller{
 		genDAO.closeEntityManager();
 	}
 
+	
 	public AccountType switchTypeOfAccount(int choice) {
 		
 		switch(choice) {
 		case 1: return AccountType.ADMIN;
-		//	break;
+		
 		case 2: return AccountType.EMPLOYEE;
-		//	break;
+		
 		case 3: return AccountType.CUSTOMER;
-		//	break;
-		default:return null;
-			
-		//	break;
+		
+		default:System.out.println("Wrong input...");;
+				runView();
+				return null;
 		}
 	}
+	
+	public void logIn() {
+		accountView.printRequestEmail();
+		String email = accountView.getStringInput();
+		accountView.printRequestPassword();
+		String passWord = accountView.getStringInput();
+	}
+	
+	
 }

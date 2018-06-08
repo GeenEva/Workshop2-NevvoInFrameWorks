@@ -5,14 +5,18 @@ import rsvier.workshop2.view.*;
 
 public class MainMenuController extends Controller{
 
-	View mainMenuView = new MainMenuView();
+	View view;
 	Controller accountController = new AccountController();
 	
 	
+	public MainMenuController(View view) {
+		this.view = view;
+	}
+	
 	@Override
 	public void runView() {
-		mainMenuView.printMenuMessage();
-		mainMenuSwitch(mainMenuView.getIntInput());
+		view.printMenuMessage();
+		mainMenuSwitch(view.getIntInput());
 	}
 	
 	
@@ -20,8 +24,7 @@ public class MainMenuController extends Controller{
 		
 		switch(choice) {
 		case 1:	//Log in
-				System.out.println("Log in...");
-				accountController.runView();
+				((AccountController)accountController).logIn();
 				break;
 				
 		case 2: //Make new account
