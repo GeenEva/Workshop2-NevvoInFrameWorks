@@ -9,22 +9,28 @@ public class Validator {
 
 	AccountView accountView;
 	GenericDAO genDAO;
+	Hashing hashing;
 	
 	
 	
-	
-	public void loginAccountValidation() {
+	public boolean loginAccountValidation() {
+		
 		accountView.printRequestEmail();
 		String email = accountView.getStringInput();
 		accountView.printRequestPassword();
-		String passWord = accountView.getStringInput();
+		String password = accountView.getStringInput();
+		//Get the row where column "ColumnName" has the value "genString"
+		Account account = (Account)genDAO.getObject("email", email);
+
+		if (account == null || (!hashing.checkPassword(password, account.getPassword()))) {
+			return false;
+		}
 		
-		Account account = genDAO.getAccount(email);
-	
+		return true;
 	}
 	
 	
-	public boolean emailValidation(String email) {
+	public static boolean emailCreateValidation(String email) {
 		
 		if (!email.matches("\\w+@\\w+\\.\\w+")) {
 			System.out.println("Dit is geen geldig e-mail adres");
@@ -36,7 +42,7 @@ public class Validator {
 	}
 	
 	
-	public boolean passWordValidation(String password) {
+	public static boolean passWordCreateValidation(String password) {
 		if (password.matches(".*\\s+.*")) {
 			System.out.println("Uw wachtwoord mag geen spatie bevatten.");
 			return false;
@@ -53,7 +59,7 @@ public class Validator {
 	}
 
 	
-	public boolean postalCodeValidation(String postalCode) {
+	public boolean postalCodeCreateValidation(String postalCode) {
 		if (!postalCode.matches("^[1-9][0-9]{3}\\s?[a-zA-Z]{2}$")) {
 			System.out.println("De ingevulde postcode is niet correct.");
 			return false;

@@ -106,6 +106,7 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 			CriteriaQuery<T> criteria = (CriteriaQuery<T>) builder.createQuery(classs);
 			Root<T> rootObject = (Root<T>) criteria.from(classs);
 			criteria.select(rootObject);
+			//Get the row where column "ColumnName" has the value "genString"
 			criteria.where(builder.equal(rootObject.get( columnName ), genString));
 
 			return entityManager.createQuery(criteria).getSingleResult();

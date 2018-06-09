@@ -3,6 +3,7 @@ package rsvier.workshop2.controller;
 import rsvier.workshop2.dao.*;
 import rsvier.workshop2.domain.*;
 import rsvier.workshop2.domain.Account.AccountType;
+import rsvier.workshop2.service.Hashing;
 import rsvier.workshop2.service.Validator;
 import rsvier.workshop2.view.*;
 
@@ -11,6 +12,7 @@ public class AccountController extends Controller{
 	private AccountView accountView = new AccountView();
 	private GenericDAO genDAO = new GenericDAOImp();
 	private Validator validator;
+	private Hashing hashing;
 	
 	public AccountController() {
 	}
@@ -25,19 +27,49 @@ public class AccountController extends Controller{
 	
 	
 	public void createNewAccount() {
-		accountView.printRequestEmail();
-		String email = accountView.getStringInput();
+		
+		String email = requestAndValidateCreateEmail();
+		
+		//password validation not working yet
+		//String password = requestAndValidateCreatePassword();
+		
 		accountView.printRequestPassword();
-		String passWord = accountView.getStringInput();
+		String password = accountView.getStringInput();
+		
 		accountView.printRequestTypeOfAccount();
 		AccountType accountType = switchTypeOfAccount(accountView.getIntInput());
 		
-		Account account = new Account(email, passWord, accountType);
+		Account account = new Account(email, password, accountType);
 		
 		genDAO.createObject(account);
 		genDAO.closeEntityManager();
 	}
 
+
+	public String requestAndValidateCreateEmail() {
+		String email;
+		do {
+		accountView.printRequestEmail();
+		email = accountView.getStringInput();
+		
+		} while (!Validator.emailCreateValidation(email));
+		
+		return email;
+	}
+	
+	
+	private String requestAndValidateCreatePassword() {
+		
+		String password;
+		
+		do {
+		accountView.printRequestPassword();
+		password = accountView.getStringInput();
+		} while (!Validator.passWordCreateValidation(password));
+		
+		return hashing.createHash(password);
+	}
+	
 	
 	public AccountType switchTypeOfAccount(int choice) {
 		

@@ -6,7 +6,7 @@ import rsvier.workshop2.view.*;
 public class MainMenuController extends Controller{
 
 	View view;
-	Controller accountController = new AccountController();
+	AccountController accountController = new AccountController();
 	
 	
 	public MainMenuController(View view) {
@@ -24,11 +24,11 @@ public class MainMenuController extends Controller{
 		
 		switch(choice) {
 		case 1:	//Log in
-				((AccountController)accountController).logIn();
+				accountController.logIn();
 				break;
 				
 		case 2: //Make new account
-				((AccountController)accountController).createNewAccount();
+				accountController.createNewAccount();
 				break;
 				
 		case 0: //Stay here...
