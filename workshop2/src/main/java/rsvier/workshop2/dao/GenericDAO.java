@@ -13,5 +13,7 @@ public interface GenericDAO<T> {
 	
 	//Testing criteria on non-generic DAO
 	public Account getAccount(String email);
+	//Trying out the same one in a generic way
+	public T getObject(String columnName, String genString);
 
 }

@@ -15,7 +15,7 @@ public class WS2MainStage {
 		GenericDAO genDAO = new GenericDAOImp();
 		Account account = new Account();
 		
-		Account account2 = genDAO.getAccount("mailmail");
+		Account account2 = (Account)genDAO.getObject("email", "mailmail");
 		
 		System.out.println(account2.toString());
 		

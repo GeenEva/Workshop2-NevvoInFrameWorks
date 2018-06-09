@@ -87,7 +87,7 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 	}
 
 	
-	//Testing criteria on non-generic DAO
+		//Testing criteria on non-generic DAO
 		public Account getAccount(String email) {
 			
 			CriteriaBuilder builder = Connection.getFactory().getCriteriaBuilder();
@@ -95,9 +95,21 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 			Root<Account> accountRoot = criteria.from(Account.class);
 			criteria.select(accountRoot);
 			criteria.where(builder.equal(accountRoot.get( "email" ), email));
-	
 
 			return entityManager.createQuery(criteria).getSingleResult();
 		}
 	
+		//Trying out the same one in a generic way
+		public T getObject(String columnName, String genString) {
+		
+			CriteriaBuilder builder = Connection.getFactory().getCriteriaBuilder();
+			CriteriaQuery<T> criteria = (CriteriaQuery<T>) builder.createQuery(Account.class);
+			Root<T> rootObject = (Root<T>) criteria.from(Account.class);
+			criteria.select(rootObject);
+			criteria.where(builder.equal(rootObject.get( columnName ), genString));
+
+			return entityManager.createQuery(criteria).getSingleResult();
+			
+		}
+		
 }
