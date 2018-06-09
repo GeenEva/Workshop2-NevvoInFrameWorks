@@ -3,14 +3,19 @@ package rsvier.workshop2.dao;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import rsvier.workshop2.domain.Account;
 import rsvier.workshop2.utility.Connection;
 
 public class GenericDAOImp<T> implements GenericDAO<T> {
 		
 	private EntityManager entityManager;
 	public Class<T> classs;
-		
+	private Account account;
+	
 	
 	public GenericDAOImp(){
 		
@@ -47,7 +52,6 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 	}
 	
 	
-	
 	public List<T> getAllObject(){
 		
 		entityManager.getTransaction().begin();
@@ -82,4 +86,18 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 		entityManager.close();
 	}
 
+	
+	//Testing criteria on non-generic DAO
+		public Account getAccount(String email) {
+			
+			CriteriaBuilder builder = Connection.getFactory().getCriteriaBuilder();
+			CriteriaQuery<Account> criteria = builder.createQuery(Account.class);
+			Root<Account> accountRoot = criteria.from(Account.class);
+			criteria.select(accountRoot);
+			criteria.where(builder.equal(accountRoot.get( "email" ), email));
+	
+
+			return entityManager.createQuery(criteria).getSingleResult();
+		}
+	
 }

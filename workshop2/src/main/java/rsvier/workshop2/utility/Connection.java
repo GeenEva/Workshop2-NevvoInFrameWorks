@@ -8,6 +8,16 @@ public class Connection {
 	private static EntityManagerFactory factory;
 
 	
+	public static EntityManagerFactory getFactory() {
+		return factory;
+	}
+
+
+	public static void setFactory(EntityManagerFactory factory) {
+		Connection.factory = factory;
+	}
+
+
 	public static EntityManager getEntityManager(){
 		
 		factory = Persistence.createEntityManagerFactory("WS2");

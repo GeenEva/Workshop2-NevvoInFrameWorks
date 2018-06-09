@@ -15,7 +15,7 @@ public class Hashing {
 
 	/*
 	 * Checks if the password entered by the user matches the hash saved in the
-	 * databse.
+	 * database.
 	 */
 
 	public boolean checkPassword(String password, String hash) {
