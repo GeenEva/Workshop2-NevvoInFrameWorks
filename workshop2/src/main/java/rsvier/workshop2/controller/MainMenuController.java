@@ -1,44 +1,30 @@
 package rsvier.workshop2.controller;
 
 
+import rsvier.workshop2.domain.*;
 import rsvier.workshop2.view.*;
 
 public class MainMenuController extends Controller{
 
-	View view;
+	MainMenuView mainMenuView = new MainMenuView();
 	AccountController accountController = new AccountController();
+	Account account;
 	
 	
-	public MainMenuController(View view) {
-		this.view = view;
+	//The Main Menu is always constructed with an account, so you always know what type of account is here
+	public MainMenuController(Account account) {
+		this.account = account;
 	}
+
 	
 	@Override
 	public void runView() {
-		view.printMenuMessage();
-		mainMenuSwitch(view.getIntInput());
+		mainMenuView.printMenuMessage();
+		mainMenuView.printAccountInfo(account);
 	}
 	
 	
-	public void mainMenuSwitch(int choice) {
-		
-		switch(choice) {
-		case 1:	//Log in
-				accountController.logIn();
-				break;
-				
-		case 2: //Make new account
-				accountController.createNewAccount();
-				break;
-				
-		case 0: //Stay here...
-				runView();
-				break;
-				
-		default: //Stay here...
-				runView();
-				break;
-		}
-	}
+	
+	
 
 }

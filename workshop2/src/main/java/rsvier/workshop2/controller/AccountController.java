@@ -11,8 +11,8 @@ public class AccountController extends Controller{
 
 	private AccountView accountView = new AccountView();
 	private GenericDAO genDAO = new GenericDAOImp();
-	private Validator validator;
-	private Hashing hashing;
+	private Validator validator = new Validator();
+	private Hashing hashing = new Hashing();
 	
 	public AccountController() {
 	}
@@ -24,17 +24,17 @@ public class AccountController extends Controller{
 		accountView.printHeaderMessage();
 		
 	}
-	
-	
-	public void createNewAccount() {
+
+	public Account createNewAccount() {
 		
 		String email = requestAndValidateCreateEmail();
 		
 		//password validation not working yet
-		//String password = requestAndValidateCreatePassword();
 		
-		accountView.printRequestPassword();
-		String password = accountView.getStringInput();
+		
+	//	accountView.printRequestPassword();
+		String password = requestAndValidateCreatePassword();
+	//	String password = accountView.getStringInput();
 		
 		accountView.printRequestTypeOfAccount();
 		AccountType accountType = switchTypeOfAccount(accountView.getIntInput());
@@ -43,10 +43,13 @@ public class AccountController extends Controller{
 		
 		genDAO.createObject(account);
 		genDAO.closeEntityManager();
+		
+		return account;
 	}
 
 
 	public String requestAndValidateCreateEmail() {
+		
 		String email;
 		do {
 		accountView.printRequestEmail();
@@ -86,15 +89,22 @@ public class AccountController extends Controller{
 		}
 	}
 	
-	public void logIn() {
-		validator.loginAccountValidation();
-		//use accounttype to go to accountHomeMenu for admin/employee/customer
+	
+	
+	public Account logIn() {
+		Account account = validator.loginAccountValidation();
+		return account;
 	}
+	
+	
+	
 	
 	public String requestAndValidateEmail(String email) {
 		
 		return email;
 	}
+	
+	
 	
 	
 }

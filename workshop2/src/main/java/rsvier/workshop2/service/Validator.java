@@ -1,32 +1,34 @@
 package rsvier.workshop2.service;
 
 import rsvier.workshop2.dao.GenericDAO;
-import rsvier.workshop2.domain.Account;
-import rsvier.workshop2.view.AccountView;
+import rsvier.workshop2.dao.GenericDAOImp;
+import rsvier.workshop2.domain.*;
+import rsvier.workshop2.view.*;
 
 
 public class Validator {
 
-	AccountView accountView;
-	GenericDAO genDAO;
-	Hashing hashing;
+	AccountView accountView = new AccountView();
+	
+	Hashing hashing = new Hashing();
 	
 	
 	
-	public boolean loginAccountValidation() {
-		
+	public Account loginAccountValidation() {
+		Account account = new Account();
+		GenericDAO genDAO = new GenericDAOImp(account.getClass());
 		accountView.printRequestEmail();
 		String email = accountView.getStringInput();
 		accountView.printRequestPassword();
 		String password = accountView.getStringInput();
 		//Get the row where column "ColumnName" has the value "genString"
-		Account account = (Account)genDAO.getObject("email", email);
+		account = (Account)genDAO.getObject("email", email);
 
 		if (account == null || (!hashing.checkPassword(password, account.getPassword()))) {
-			return false;
+			return null;
 		}
 		
-		return true;
+		return account;
 	}
 	
 	
