@@ -28,14 +28,8 @@ public class AccountController extends Controller{
 	public Account createNewAccount() {
 		
 		String email = requestAndValidateCreateEmail();
-		
-		//password validation not working yet
-		
-		
-	//	accountView.printRequestPassword();
 		String password = requestAndValidateCreatePassword();
-	//	String password = accountView.getStringInput();
-		
+	
 		accountView.printRequestTypeOfAccount();
 		AccountType accountType = switchTypeOfAccount(accountView.getIntInput());
 		

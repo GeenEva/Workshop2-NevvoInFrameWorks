@@ -9,6 +9,7 @@ public class MainMenuController extends Controller{
 	MainMenuView mainMenuView = new MainMenuView();
 	AccountController accountController = new AccountController();
 	Account account;
+	ProductController productController = new ProductController();
 	
 	
 	//The Main Menu is always constructed with an account, so you always know what type of account is here
@@ -19,7 +20,7 @@ public class MainMenuController extends Controller{
 	
 	@Override
 	public void runView() {
-		mainMenuView.printMenuMessage();
+		mainMenuView.printHeaderMessage();
 		mainMenuSwitch(account);
 	}
 	
@@ -27,15 +28,43 @@ public class MainMenuController extends Controller{
 	public void mainMenuSwitch(Account account) {
 		switch(account.getAccountType()) {
 		
-		case ADMIN: 	mainMenuView.printADMINMainMenu();
+		case ADMIN: 	mainMenuView.printAdminMainMenu();
 						//to controller
-		case EMPLOYEE:	mainMenuView.printEMPLOYEEMainMenu();
-						//to controller
-		case CUSTOMER: 	mainMenuView.printCUSTOMERMainMenu();
+						break;
+						
+						
+		case EMPLOYEE:	mainMenuView.printEmployeeMainMenu();
+						employeeMainMenuSwitch(mainMenuView.getIntInput());
+						break;
+						
+		case CUSTOMER: 	mainMenuView.printCustomerMainMenu();
 						//to controller
 		
 		default: break;
 		}
+	}
+
+
+	private void employeeMainMenuSwitch(int choice) {
+		
+		switch(choice) {
+			case 1: 	//Go to Product Menu
+						productController.runView();
+						runView();
+			case 2: 	//Go to Customer Menu
+				
+				
+			case 3:		//Go to Order Menu
+				
+				
+			case 0: 	//Go back and log out
+						System.out.println("\n...Je logt nu uit...\n");
+						break;
+						
+			default: 	break;
+					
+		}
+		
 	}
 	
 	

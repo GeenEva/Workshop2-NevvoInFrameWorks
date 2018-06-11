@@ -7,7 +7,7 @@ public class MainMenuView extends View{
 	
 	@Override
 	public void printHeaderMessage() {
-		System.out.println("*....*....* Hoofd Menu *....*....*");
+		System.out.println("\n- - - - - - - - Hoofd Menu - - - - - - - -");
 		
 	}
 
@@ -21,18 +21,18 @@ public class MainMenuView extends View{
 		System.out.println("U heeft account type: " + account.getAccountType().toString());
 	}
 	
-	public void printADMINMainMenu() {
+	public void printAdminMainMenu() {
 		System.out.println("\nWelkom in het hoofdmenu van Administrator. " +
-				"Maak uw keuze:\n1 = \n2 = \n3 =");
+				"Maak uw keuze:\n\n1 = \n2 = \n3 = \n0 = Uitloggen\n");
 	}
 	
-	public void printEMPLOYEEMainMenu() {
+	public void printEmployeeMainMenu() {
 		System.out.println("\nWelkom in het hoofdmenu van Medewerker. " +
-				"Maak uw keuze:\n1 = \n2 = \n3 =");
+				"Maak uw keuze:\n\n1 = Ga naar Product Menu\n2 = Ga naar Klant Menu\n3 = Ga naar Bestellingen Menu\n0 = Uitloggen\n");
 	}
 	
-	public void printCUSTOMERMainMenu() {
+	public void printCustomerMainMenu() {
 		System.out.println("\nWelkom in het hoofdmenu van Klant. " +
-				"Maak uw keuze:\n1 = \n2 = \n3 =");
+				"Maak uw keuze:\n\n1 = \n2 = \n3 = \n0 = Uitloggen\n");
 	}
 }

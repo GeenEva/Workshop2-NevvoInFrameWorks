@@ -4,7 +4,7 @@ public class StartMenuView extends View{
 
 	@Override
 	public void printHeaderMessage() {
-		System.out.println("- - - - Start Menu - - - -");
+		System.out.println("\n- - - - - - - Start Menu - - - - - - -");
 		
 	}
 
