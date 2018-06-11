@@ -10,6 +10,7 @@ public class ProductController extends Controller{
 	Product product = new Product();
 	GenericDAO genDAOProduct = new GenericDAOImp(product.getClass());
 	
+	
 	@Override
 	public void runView() {
 		productView.printHeaderMessage();
@@ -24,6 +25,7 @@ public class ProductController extends Controller{
 		
 		case 1: //Create product
 				createNewProduct();
+				runView();
 				break;
 				
 		case 2: //Find products

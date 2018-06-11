@@ -12,7 +12,7 @@ public class MainMenuController extends Controller{
 	ProductController productController = new ProductController();
 	
 	
-	//The Main Menu is always constructed with an account, so you always know what type of account is here
+	//The Main Menu is always constructed with an account, so you always know what type of account is logged in here
 	public MainMenuController(Account account) {
 		this.account = account;
 	}
@@ -32,15 +32,15 @@ public class MainMenuController extends Controller{
 						//to controller
 						break;
 						
-						
 		case EMPLOYEE:	mainMenuView.printEmployeeMainMenu();
 						employeeMainMenuSwitch(mainMenuView.getIntInput());
+						runView();
 						break;
 						
 		case CUSTOMER: 	mainMenuView.printCustomerMainMenu();
 						//to controller
-		
-		default: break;
+						break;
+		default: 		break;
 		}
 	}
 
@@ -50,13 +50,18 @@ public class MainMenuController extends Controller{
 		switch(choice) {
 			case 1: 	//Go to Product Menu
 						productController.runView();
-						runView();
+						break;
+						
 			case 2: 	//Go to Customer Menu
-				
-				
+						System.out.println("Dit gedeelte werkt nog niet.");
+						runView();
+						break;
+						
 			case 3:		//Go to Order Menu
-				
-				
+						System.out.println("Dit gedeelte werkt nog niet.");
+						runView();
+						break;
+						
 			case 0: 	//Go back and log out
 						System.out.println("\n...Je logt nu uit...\n");
 						break;

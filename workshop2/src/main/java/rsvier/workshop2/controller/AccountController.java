@@ -27,8 +27,8 @@ public class AccountController extends Controller{
 
 	public Account createNewAccount() {
 		
-		String email = requestAndValidateCreateEmail();
-		String password = requestAndValidateCreatePassword();
+		String email = requestAndValidateNewEmail();
+		String password = requestAndValidateNewPassword();
 	
 		accountView.printRequestTypeOfAccount();
 		AccountType accountType = switchTypeOfAccount(accountView.getIntInput());
@@ -42,7 +42,7 @@ public class AccountController extends Controller{
 	}
 
 
-	public String requestAndValidateCreateEmail() {
+	public String requestAndValidateNewEmail() {
 		
 		String email;
 		do {
@@ -55,7 +55,7 @@ public class AccountController extends Controller{
 	}
 	
 	
-	private String requestAndValidateCreatePassword() {
+	private String requestAndValidateNewPassword() {
 		
 		String password;
 		
