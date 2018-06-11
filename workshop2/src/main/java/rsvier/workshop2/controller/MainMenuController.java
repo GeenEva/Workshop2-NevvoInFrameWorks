@@ -20,10 +20,23 @@ public class MainMenuController extends Controller{
 	@Override
 	public void runView() {
 		mainMenuView.printMenuMessage();
-		mainMenuView.printAccountInfo(account);
+		mainMenuSwitch(account);
 	}
 	
 	
+	public void mainMenuSwitch(Account account) {
+		switch(account.getAccountType()) {
+		
+		case ADMIN: 	mainMenuView.printADMINMainMenu();
+						//to controller
+		case EMPLOYEE:	mainMenuView.printEMPLOYEEMainMenu();
+						//to controller
+		case CUSTOMER: 	mainMenuView.printCUSTOMERMainMenu();
+						//to controller
+		
+		default: break;
+		}
+	}
 	
 	
 
