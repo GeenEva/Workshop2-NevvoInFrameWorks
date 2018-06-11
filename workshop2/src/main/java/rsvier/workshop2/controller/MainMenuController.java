@@ -10,6 +10,7 @@ public class MainMenuController extends Controller{
 	AccountController accountController = new AccountController();
 	Account account;
 	ProductController productController = new ProductController();
+	AddressController addressController = new AddressController();
 	
 	
 	//The Main Menu is always constructed with an account, so you always know what type of account is logged in here
@@ -30,12 +31,11 @@ public class MainMenuController extends Controller{
 		switch(account.getAccountType()) {
 		
 		case ADMIN: 	mainMenuView.printAdminMainMenu();
-						//to controller
+						//Not Implemented Yet
 						break;
 						
 		case EMPLOYEE:	mainMenuView.printEmployeeMainMenu();
 						employeeMainMenuSwitch(mainMenuView.getIntInput());
-						runView();
 						break;
 						
 		case CUSTOMER: 	mainMenuView.printCustomerMainMenu();

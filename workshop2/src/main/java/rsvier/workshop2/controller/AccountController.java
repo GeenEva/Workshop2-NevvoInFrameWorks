@@ -13,7 +13,8 @@ public class AccountController extends Controller{
 	private GenericDAO genDAO = new GenericDAOImp();
 	private Validator validator = new Validator();
 	private Hashing hashing = new Hashing();
-	
+	private AddressController addressController = new AddressController();
+	private PersonController personController = new PersonController();
 	
 	public AccountController() {
 	}
@@ -36,8 +37,8 @@ public class AccountController extends Controller{
 		
 		Account account = new Account(email, password, accountType);
 		
-		genDAO.createObject(account);
-		genDAO.closeEntityManager();
+		personController.createNewPerson(account);
+	//	addressController.createNewAddress();
 		
 		return account;
 	}

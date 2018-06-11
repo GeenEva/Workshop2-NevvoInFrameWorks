@@ -20,7 +20,7 @@ public class Connection {
 
 	public static EntityManager getEntityManager(){
 		
-		factory = Persistence.createEntityManagerFactory("WS2");
+		factory = Persistence.createEntityManagerFactory("WS22");
 		EntityManager em = factory.createEntityManager();
 		
 		return em;
