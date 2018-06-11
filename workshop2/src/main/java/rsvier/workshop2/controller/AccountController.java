@@ -91,8 +91,8 @@ public class AccountController extends Controller{
 		
 		Account account = validator.loginAccountValidation();
 		
-		while (account == null) {
-			 account = validator.loginAccountValidation(); }
+		if (account == null) {
+			 return null; }
 		
 		
 		return account;

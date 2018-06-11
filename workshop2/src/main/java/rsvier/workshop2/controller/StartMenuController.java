@@ -30,6 +30,7 @@ public void startMenuSwitch(int choice) {
 				
 		case 2:	//Log in
 				account = accountController.logIn();
+					if (account == null) {runView();}
 				new MainMenuController(account).runView();
 				runView();
 				break;

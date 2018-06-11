@@ -28,7 +28,7 @@ public class Validator {
 
 		if (account == null || (!hashing.checkPassword(password, account.getPassword()))) {
 			genDAO.clearEntityManager();
-			System.out.println("\nUw gegevens zijn onjuist. Probeer het nogmaals.\n");
+			System.out.println("\nUw gegevens zijn onjuist.\n");
 			return null;
 		}
 		
