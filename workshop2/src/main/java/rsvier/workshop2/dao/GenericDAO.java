@@ -10,7 +10,7 @@ public interface GenericDAO<T> {
 	public void updateObject(T entity);
 	public void deleteObject(long id);
 	public void closeEntityManager();
-	
+	public void clearEntityManager();
 	//Testing criteria on non-generic DAO
 	public Account getAccount(String email);
 	//Trying out the same one in a generic way

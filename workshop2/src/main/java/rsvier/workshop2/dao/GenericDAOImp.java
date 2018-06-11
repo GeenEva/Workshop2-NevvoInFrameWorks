@@ -102,6 +102,7 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 		//Trying out the same one in a generic way
 		public T getObject(String columnName, String genString) {
 		
+			try {
 			CriteriaBuilder builder = Connection.getFactory().getCriteriaBuilder();
 			CriteriaQuery<T> criteria = (CriteriaQuery<T>) builder.createQuery(classs);
 			Root<T> rootObject = (Root<T>) criteria.from(classs);
@@ -110,7 +111,13 @@ public class GenericDAOImp<T> implements GenericDAO<T> {
 			criteria.where(builder.equal(rootObject.get( columnName ), genString));
 
 			return entityManager.createQuery(criteria).getSingleResult();
-			
+			}
+			catch (Exception e) {
+				entityManager.clear();
+				return null;}
 		}
 		
+		public void clearEntityManager() {
+			entityManager.clear();
+		}
 }

@@ -15,16 +15,20 @@ public class Validator {
 	
 	
 	public Account loginAccountValidation() {
+		
 		Account account = new Account();
-		GenericDAO genDAO = new GenericDAOImp(account.getClass());
+		GenericDAO<Account> genDAO = new GenericDAOImp(account.getClass());
 		accountView.printRequestEmail();
 		String email = accountView.getStringInput();
 		accountView.printRequestPassword();
 		String password = accountView.getStringInput();
+		
 		//Get the row where column "ColumnName" has the value "genString"
 		account = (Account)genDAO.getObject("email", email);
 
 		if (account == null || (!hashing.checkPassword(password, account.getPassword()))) {
+			genDAO.clearEntityManager();
+			System.out.println("\nUw gegevens zijn onjuist. Probeer het nogmaals.\n");
 			return null;
 		}
 		

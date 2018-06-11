@@ -26,6 +26,7 @@ public class MainMenuController extends Controller{
 	
 	
 	public void mainMenuSwitch(Account account) {
+		
 		switch(account.getAccountType()) {
 		
 		case ADMIN: 	mainMenuView.printAdminMainMenu();
@@ -38,10 +39,28 @@ public class MainMenuController extends Controller{
 						break;
 						
 		case CUSTOMER: 	mainMenuView.printCustomerMainMenu();
-						//to controller
+						customerMainMenuSwitch(mainMenuView.getIntInput());
 						break;
+						
 		default: 		break;
 		}
+	}
+
+
+	private void customerMainMenuSwitch(int choice) {
+		
+		switch(choice) {
+		
+		case 1:
+			 	break;
+		case 2: 
+				break;
+		case 0: 
+				break;
+				
+		default: break;
+		}
+		
 	}
 
 

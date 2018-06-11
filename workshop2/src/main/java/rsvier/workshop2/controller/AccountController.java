@@ -14,6 +14,7 @@ public class AccountController extends Controller{
 	private Validator validator = new Validator();
 	private Hashing hashing = new Hashing();
 	
+	
 	public AccountController() {
 	}
 	
@@ -86,7 +87,13 @@ public class AccountController extends Controller{
 	
 	
 	public Account logIn() {
+		
 		Account account = validator.loginAccountValidation();
+		
+		while (account == null) {
+			 account = validator.loginAccountValidation(); }
+		
+		
 		return account;
 	}
 	
