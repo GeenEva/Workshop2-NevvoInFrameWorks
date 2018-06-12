@@ -29,11 +29,23 @@ public class AccountController extends Controller{
 
 	public Account createNewAccount() {
 		
+		AccountType accountType;
+		
+		do {
+			accountView.printRequestTypeOfAccount();
+			accountType = switchTypeOfAccount(accountView.getIntInput());
+		}
+		
+		while (accountType == null);
+	
+		if (!validator.checkAdminAuthority(accountType))  {
+			System.out.println("Dit is niet het admin wachtwoord. Je gaat terug naar het Start Menu.");
+			return null;
+		}
+	
 		String email = requestAndValidateNewEmail();
 		String password = requestAndValidateNewPassword();
 	
-		accountView.printRequestTypeOfAccount();
-		AccountType accountType = switchTypeOfAccount(accountView.getIntInput());
 		
 		Account account = new Account(email, password, accountType);
 		
@@ -79,8 +91,8 @@ public class AccountController extends Controller{
 		
 		case 3: return AccountType.CUSTOMER;
 		
-		default:System.out.println("Wrong input...");;
-				runView();
+		default:System.out.println("Ongeldige keuze...");;
+				
 				return null;
 		}
 	}

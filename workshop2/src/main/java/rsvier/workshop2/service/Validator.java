@@ -3,6 +3,7 @@ package rsvier.workshop2.service;
 import rsvier.workshop2.dao.GenericDAO;
 import rsvier.workshop2.dao.GenericDAOImp;
 import rsvier.workshop2.domain.*;
+import rsvier.workshop2.domain.Account.AccountType;
 import rsvier.workshop2.view.*;
 
 
@@ -71,6 +72,21 @@ public class Validator {
 			return false;
 		}
 
+		return true;
+	}
+
+
+	public boolean checkAdminAuthority(AccountType accountType) {
+		
+		if(accountType == AccountType.ADMIN) {
+			
+			System.out.println("Geef admin wachtwoord: ");
+			String woordje = accountView.getStringInput();
+		
+			if(!woordje.equals("sesampasta")) {
+				return false;
+			}
+		}
 		return true;
 	}
 	
